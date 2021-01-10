@@ -1,0 +1,27 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[toc,page]{appendix}
+\usepackage{listings}
+\usepackage{float}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\begin{document}
+
+\input{titlepage.tex}
+
+\tableofcontents
+
+\input{mattchapter.tex}
+
+\end{document}
+

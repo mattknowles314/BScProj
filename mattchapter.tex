@@ -1,0 +1,97 @@
+\chapter{On Differential Equations in Molecular Virology}
+
+\section{Introduction}
+
+\subsection{Biological Background of Molecular Virology}
+
+Before diving into the maths of virology, we will briefly look at some of the biological processes involved, as a way of giving context to the maths that is employed later. Viral Pathogenesis is a very complex process with lots of varying factors. It can be somewhat boiled down to a balancing act between the host and the virus. The goal of any virus that wants to survive is to hijack the cells in a host and replicate as much as possible. This is done by a process known as \textit{replication}.\footnote{Creative, I know} $\cite{cann}$
+
+There are three stages involved in replication, \textbf{Initiation of Infection}, \textbf{Replication and Expression of the viral genome} and  \textbf{Release of mature virions}. The modelling we will undertake primarily focuses on steps 1 and 3. 
+
+\subsection{Overview Differential Equations in Molecular Virology}
+
+Differential Equations are very relevant in applied mathematics. Virology is no exception. In this chapter we will be focusing on a micro scale, looking in depth at the equations used to model in-host viral dynamics. There are two main types of differential equations we will look at: ordinary (ODE) and stochastic (SDE). 
+We assume the reader is familiar with ODEs, but SDE's are slightly more specialised. $\cite{sdeProc}$.
+
+\begin{definition}
+    A \textbf{Stochastic Differential Equation (SDE)} is a differential equation of the form 
+    \[
+        dX_t = b(X_t,t)dt + \sigma (X_t,t)dW_t
+    \]  
+\end{definition}
+
+We see two terms here that need further explanation.
+
+\begin{itemize}
+    \item $b(X_t,t)$ is the \textbf{drift coefficient} of the equation. It describes the deterministic part of the equation. \\
+    \item $\sigma (X_t,t)dW_t$ is the \textbf{diffusion coefficient}. It describes random motion, which is what seperates SDEs from ODEs. If this term was not here, we would simply have an ODE.
+\end{itemize}
+
+\section{An ODE model for in-host viral dynamics}
+
+\subsection{Deriving the model}
+
+Consider a human being. We can split the molecular constituents of this person into 3 categories: \textbf{Uninfected cells}, \textbf{Cells already infected cells} and \textbf{Free virions}. We denote the amount of these present at a time $t$ as  $T(t)$,  $I(t)$ and  $V(t)$ respecitvely.
+The body of the person in question will produce fresh uninfected cells at a rate $\lambda$, however these cells will be removed from this category if they die or become infected. We use  $k$ to denote the rate at which uninfected cells become infected per virion. Secondly, these cells die naturally at a rate of  $\mu_T$. In the same way, $\mu_I$ is the rate at which infected cells are removed, the three options for this are natural cell death, immune response and \textit{lysis}, which is where fresh virions are ejected from the cell, breaking the membrane and killing the cell.
+Similarly, $\mu_V$ is the rate at whcic virions are removed from the host. Finally, $N$ gives the average number of new virions produced during the life of an infected cell. 
+
+With all of this in mind, we can derive differential equations for $T$,  $I$, and  $V$. Starting with $T$, we have a constant  $\lambda$ feeding new cells, but then we are removing them at a rate $k$ per virion, and a proportion $\mu_T$ die of natural cell death. So we have:
+
+\[
+    \frac{dT}{dt} = \lambda - \mu_TT - kTV    
+\] 
+
+Then for $I$, the $kTV$ term from the above becomes positive, because these cells are going from uninfected to infected. These cells also die off at a rate of $\mu_T$ which encompasses natural death and the immune system. Putting this together gives:
+
+\[
+    \frac{dI}{dt} = kTV - \mu_II    
+\] 
+
+Finally, for $V$, we have to include N and $\mu_I$ into one term, because  $N$ virions can only be ejected from a cell if it dies. THen again we have the term  $\mu_V$ for the removal of these cells from the host.
+
+\[
+    \frac{dV}{dt} = N\mu_II - \mu_VV
+\] 
+
+All that is left to do is combine these three into a sytem of ODEs which we call the \textbf{Standard Model for In-Host Viral Dynamics} $\cite{pan}$.
+
+\begin{equation}
+    \begin{cases}
+        \frac{dT}{dt} = \lambda - \mu_TT - kTV \\
+        \frac{dI}{dt} = kTV - \mu_II \\
+        \frac{dV}{dt} = N\mu_II - \mu_VV
+    \end{cases}
+\end{equation}
+
+\subsection{Model of an Unifected Person}
+
+Before someone is infected, they have no free virions. With $V = N = I = 0$, we now model the person with two equations.
+
+\begin{equation}
+        \frac{dT}{dt} &= \lambda - \mu_TT \\
+\end{equation}
+
+The solution for this system is given as 
+
+\begin{equation}
+        T(t) &= Ae^{-\mu_T t}+\frac{\lambda}{\mu_T} \\
+\end{equation}
+
+Since there are no infected cells, and no free virions, we just have the number of target cells increasing exponentially. Which makes sense because one's body creates more cells than it kills off- or at least, ideally that's what happens.
+
+We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* \lambda$. This can be seen in figure 1. Clearly the values are restircted by my computing power, a human person (hopefully) has more than a total of 20000 cells.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[scale=0.8]{../figures/Figure1.png}
+    \caption{Sketch of T(t)}
+\end{figure}
+
+\newpage
+
+So we see that the exponential shape as mentioned. This is clearly slightly simplified, to make a more realistic model, we wouldn't have $\frac{d \lambda}{dt} = 0$. As a person gets older, their body will produce less cells, which would cause the graph to curve off and eventually stop. 
+
+\subsection{Model for an Infected Person}
+We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the \textit{Python} programming language.\footnote{Python was selected due to it's efficiecny and helpful modules which makes solving these equations much easier.}
+\bibliography{refs}{}
+\bibliographystyle{plain}
