@@ -93,5 +93,38 @@ So we see that the exponential shape as mentioned. This is clearly slightly simp
 
 \subsection{Model for an Infected Person}
 We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the \textit{Python} programming language.\footnote{Python was selected due to it's efficiecny and helpful modules which makes solving these equations much easier.}
+
+We first look at positive N. When N is 1, each time an infected cell dies, only 1 new virion is released, analagous for N=10 and 50. The plotted graphs for these models can be seen below:
+
+\begin{figure}[h]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{../figures/N1.png}
+        \caption{ODE Model with N=1}%
+    \end{minipage}
+    \hfill
+    \centering
+    \begin{minipage}[b] {0.4\textwidth}   
+        \includegraphics[width=\textwidth]{../figures/N10.png}
+        \caption{ODE Model with N=10}%
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.5\linewidth]{../figures/N50.png}
+    \caption{ODE Model with N=50}%
+\end{figure}
+
+We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen. \footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution.
+
+Further, note that here we have not considered medications and treatments, this will be discussed in a later chapter.
+
+\subsection{Advancing the ODE model}
+
+Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. 
+
+%parameter estimation!
+
 \bibliography{refs}{}
 \bibliographystyle{plain}

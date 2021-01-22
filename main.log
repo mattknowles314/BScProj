@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.6)  10 DEC 2020 11:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.8.6)  22 JAN 2021 13:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -304,22 +304,38 @@ File: ../figures/Figure1.png Graphic file (type png)
 <use ../figures/Figure1.png>
 Package pdftex.def Info: ../figures/Figure1.png  used on input line 86.
 (pdftex.def)             Requested size: 270.00108pt x 268.84476pt.
-[3] (./main.bbl [4 <../figures/Figure1.png>])) [5
+[3]
+<../figures/N1.png, id=34, 674.2791pt x 700.2963pt>
+File: ../figures/N1.png Graphic file (type png)
+<use ../figures/N1.png>
+Package pdftex.def Info: ../figures/N1.png  used on input line 102.
+(pdftex.def)             Requested size: 181.18439pt x 188.17424pt.
+<../figures/N10.png, id=35, 674.2791pt x 700.2963pt>
+File: ../figures/N10.png Graphic file (type png)
+<use ../figures/N10.png>
+Package pdftex.def Info: ../figures/N10.png  used on input line 108.
+(pdftex.def)             Requested size: 181.18439pt x 188.17424pt.
+<../figures/N50.png, id=36, 674.2791pt x 700.2963pt>
+File: ../figures/N50.png Graphic file (type png)
+<use ../figures/N50.png>
+Package pdftex.def Info: ../figures/N50.png  used on input line 115.
+(pdftex.def)             Requested size: 226.48395pt x 235.22314pt.
+ [4 <../figures/Figure1.png> <../figures/N1.png> <../figures/N10.png>] (./main.bbl [5 <../figures/N50.png>])) [6
 
 ] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3982 strings out of 480906
- 55489 string characters out of 5908269
+ 4000 strings out of 480906
+ 55831 string characters out of 5908269
  308996 words of memory out of 5000000
- 19533 multiletter control sequences out of 15000+600000
+ 19548 multiletter control sequences out of 15000+600000
  543657 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,8n,36p,634b,222s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,36p,942b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on main.pdf (6 pages, 208895 bytes).
+Output written on main.pdf (7 pages, 355745 bytes).
 PDF statistics:
- 89 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 100 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
