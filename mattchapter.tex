@@ -116,15 +116,46 @@ We first look at positive N. When N is 1, each time an infected cell dies, only 
     \caption{ODE Model with N=50}%
 \end{figure}
 
-We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen. \footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution.
+We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen.\footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution.
 
 Further, note that here we have not considered medications and treatments, this will be discussed in a later chapter.
 
-\subsection{Advancing the ODE model}
+\subsection{Advancing the ODE model - Parameter Estimation}
 
-Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. 
+Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. These individual viruses behave differently internally and externally, the way we model this difference is through th parameters given to the equations. This can be seen intuitively by comparing something like HIV and SARS-CoV2. HIV is an immunodeficiency virus, this means that it destroys the hosts immune system, so our parameters like $\lambda$ and  $\mu_I$ will actually decrease over time as the virus takes hold. Comparitively, SARS-based viruses are respiritory illnesses, so they dont taget the hosts defense systems in the same way, and so these parameters will remain roughly the same throughout.
 
-%parameter estimation!
+These parameters are derived from analysing large amounts of data. But this can be improved as time goes on by using Bayesian Statistics. This is discussed extensively in a 1989 paper by Zeger et. al $\cite{zeger}$. This paper was focused on the AIDS epidemic in the US in the 1980s. By using log-linear models, they are able to estimate trends and numbers in the epidemic whilst correcting for new incoming data. It is this correcting aspect which is most relevant to our discussion. By correcting the models we can get a set of more accurate parameters which can then be used to fine tune our differential equations to model an epidemic. This is less to do with our models but it is useful to see how this works. Before this, we recall an incredibly important theorem:
+
+\newpage
+
+\begin{theorem}{Bayes:}
+Let $\{H_1,\ldots,H_k\}$ be a partition of an event-space $\mathbb{H}$ then for some other event E, \textit{Bayes' Theorem} gives us:
+
+\begin{equation}        
+    Pr(H_j | E) = \frac{Pr(E|H_j)Pr(H_j)}{\sum_k Pr(E|H_k)Pr(H_k)}
+\end{equation}
+
+\end{theorem}
+
+\begin{example}{Parameter estimation for $\mu_I$} \\
+    Suppose there is some disease circulating thorughout a population. We observe some dataset y of infection data. Our parameter of interest is $\mu_I$ then Theorem 2 gives us:
+
+    \[
+        p(\mu_I | y) \propto p(y|\mu_I)p(\mu_I)
+    .\] 
+
+Since infection data for epidemics follows a normal distribution, the probability density functions can be subsituted in and the necessary calculations made from this, although this is beyond the scope of this chapter.
+\end{example}
+
+\section{The Stochastic Differential Equation Model}
+We met the definition of a Stochastic Differetnial Equation (SDE) in the overview, definition 1. We will be focussing now on the $\sigma(X_t,t)dW_t$ term. Firstly, we ask ``why use SDEs when we have seen that ODES give a good model?". Intuitively, there is an element of randomness to pathology, just because you have a disease, it doesn't mean you have a 100\% chance of passing it on if you come into contact with an infected person. Analously, a pathogen might not necessarily make it all the way through the pathogenesis process of infecting a cell. So introducing the randomness term can refine our models nicely.
+
+\subsection{Outline of a Stochastic Process}
+The $\sigma$ term is a  \textit{Stochastic Process}. We introduce the following definition for a stochastic process as given in $\cite{brze}$:
+
+\begin{definition}
+    A \textit{stochastic process} is a family of random variables $\sigma(t)$ parametrised by  $t \in T \subset \mathbb{R}$. When T is a continuous inteval in $\mathbb{R}$ (As in our case) then we call $\sigma$ a stochastic process in continuous time.
+\end{definition}
 
 \bibliography{refs}{}
 \bibliographystyle{plain}

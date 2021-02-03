@@ -6,4 +6,6 @@
 \contentsline {subsection}{\numberline {1.2.1}Deriving the model}{2}%
 \contentsline {subsection}{\numberline {1.2.2}Model of an Unifected Person}{3}%
 \contentsline {subsection}{\numberline {1.2.3}Model for an Infected Person}{4}%
-\contentsline {subsection}{\numberline {1.2.4}Advancing the ODE model}{5}%
+\contentsline {subsection}{\numberline {1.2.4}Advancing the ODE model - Parameter Estimation}{5}%
+\contentsline {section}{\numberline {1.3}The Stochastic Differential Equation Model}{6}%
+\contentsline {subsection}{\numberline {1.3.1}Outline of a Stochastic Process}{6}%
