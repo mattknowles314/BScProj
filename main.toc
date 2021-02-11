@@ -1,11 +1,14 @@
 \contentsline {chapter}{\numberline {1}On Differential Equations in Molecular Virology}{2}%
 \contentsline {section}{\numberline {1.1}Introduction}{2}%
 \contentsline {subsection}{\numberline {1.1.1}Biological Background of Molecular Virology}{2}%
-\contentsline {subsection}{\numberline {1.1.2}Overview Differential Equations in Molecular Virology}{2}%
-\contentsline {section}{\numberline {1.2}An ODE model for in-host viral dynamics}{2}%
-\contentsline {subsection}{\numberline {1.2.1}Deriving the model}{2}%
-\contentsline {subsection}{\numberline {1.2.2}Model of an Unifected Person}{3}%
-\contentsline {subsection}{\numberline {1.2.3}Model for an Infected Person}{4}%
-\contentsline {subsection}{\numberline {1.2.4}Advancing the ODE model - Parameter Estimation}{5}%
-\contentsline {section}{\numberline {1.3}The Stochastic Differential Equation Model}{6}%
-\contentsline {subsection}{\numberline {1.3.1}Outline of a Stochastic Process}{6}%
+\contentsline {subsection}{\numberline {1.1.2}Overview Differential Equations in Molecular Virology}{3}%
+\contentsline {section}{\numberline {1.2}An ODE model for in-host viral dynamics}{3}%
+\contentsline {subsection}{\numberline {1.2.1}Deriving the model}{3}%
+\contentsline {subsection}{\numberline {1.2.2}Model of an Unifected Person}{4}%
+\contentsline {subsection}{\numberline {1.2.3}Model for an Infected Person}{5}%
+\contentsline {subsection}{\numberline {1.2.4}Advancing the ODE model - Parameter Estimation}{6}%
+\contentsline {section}{\numberline {1.3}The Stochastic Differential Equation Model}{7}%
+\contentsline {subsection}{\numberline {1.3.1}Outline of a Stochastic Process}{7}%
+\contentsline {subsection}{\numberline {1.3.2}Deriving the Stochastic Process for Molecular Virology}{7}%
+\contentsline {section}{\numberline {1.4}Stochastic vs Differential, Which is better? What's the point?}{8}%
+\contentsline {section}{\numberline {1.5}Real World Application: Deterministic Model for Hepitis B}{10}%

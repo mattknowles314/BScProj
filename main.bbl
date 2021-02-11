@@ -10,9 +10,22 @@ Alan Cann.
 \newblock {\em Principles of Moclecular Virology}.
 \newblock Elsevier Academic Press, 2015.
 
+\bibitem{hews}
+Sarah Hews, Steffen Eikenberry, John~D Nagy, and Yang Kuang.
+\newblock Rich dynamics of a hepatitis b viral infection model with logistic
+  heptocyte growth.
+\newblock {\em Journal of Mathematical Biology}, 60(4):573--590, 2010.
+
 \bibitem{sdeProc}
 Miranda Holmes-Cerfon.
 \newblock Lecture notes on stochastic differential equations.
+
+\bibitem{mah}
+Maroane Mahrouf, El~Mehdi Lotfi, Mehdi Mazaine, Khalid Hattaf, and Noura
+  Yousif.
+\newblock Stability analysis for stochastic differential equations in virology.
+\newblock {\em Journal of Advances in Mathematics and Computer Science}, pages
+  1--12, 2017.
 
 \bibitem{pan}
 Stephen Pankavich and Christian Parkinson.

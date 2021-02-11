@@ -4,9 +4,15 @@
 
 \subsection{Biological Background of Molecular Virology}
 
-Before diving into the maths of virology, we will briefly look at some of the biological processes involved, as a way of giving context to the maths that is employed later. Viral Pathogenesis is a very complex process with lots of varying factors. It can be somewhat boiled down to a balancing act between the host and the virus. The goal of any virus that wants to survive is to hijack the cells in a host and replicate as much as possible. This is done by a process known as \textit{replication}.\footnote{Creative, I know} $\cite{cann}$
+Before diving into the maths of virology, we will briefly look at some of the biological processes involved, as a way of giving context to the maths that is employed later. Viral Pathogenesis is a very complex process with lots of varying factors. It can be somewhat boiled down to a balancing act between the host and the virus. The goal of any virus that wants to survive is to hijack the cells in a host and replicate as much as possible. This is done by a process known as \textit{replication}.\footnote{Creative, I know} $\cite{cann}$ \\
 
-There are three stages involved in replication, \textbf{Initiation of Infection}, \textbf{Replication and Expression of the viral genome} and  \textbf{Release of mature virions}. The modelling we will undertake primarily focuses on steps 1 and 3. 
+There are three stages involved in replication, \textbf{Initiation of Infection}, \textbf{Replication and Expression of the viral genome} and  \textbf{Release of mature virions}. The modelling we will undertake primarily focuses on steps 1 and 3. \\
+
+Viruses are unique in they bind to specific genes in a host, for example, we will discuss Hepititis B at the end of this chapter, which only binds to liver cells, whereas a virus like SARS or MERS are respiritory illness, which bind to receptors in a hosts lungs. This fact is useful when it comes to actually computing the models we describe here, because it means we can reduce the size of the parameters required- a virus that infects the large intestine will require bigger parameters than one that infects the kidneys. \\
+
+Virions- the individual virus particles-, when they reach their target tissue, bind to certain points on the genome of the cells in that tissue. Virions may not always get this far if the target cells are aware of the incoming cell as a virus and can prevent binding. This is what happens if someone has immunity by either already having had the virus or being vaccinated. Once bound to the genome, they can activate certain genes in the genome. This is the 'hijacking' part, because it will cause the infected cells to produce more infected cells instead of the healthy ones it should be producing. A lot of statisitcal pattern recognition is going on to help develop treatments for viruses and cancers by identifying genes that viruses target, allowing treatments to fight an infection from a genomic level- but we won't discuss that in this chapter. \\
+
+What we will now go onto discuss is how an infection unfolds, using 2 different types of models. The work being described below is an incredibly exciting area of biological maths and I believe has the potential to make a huge difference to medicine in the future. \\
 
 \subsection{Overview Differential Equations in Molecular Virology}
 
@@ -32,10 +38,9 @@ We see two terms here that need further explanation.
 \subsection{Deriving the model}
 
 Consider a human being. We can split the molecular constituents of this person into 3 categories: \textbf{Uninfected cells}, \textbf{Cells already infected cells} and \textbf{Free virions}. We denote the amount of these present at a time $t$ as  $T(t)$,  $I(t)$ and  $V(t)$ respecitvely.
-The body of the person in question will produce fresh uninfected cells at a rate $\lambda$, however these cells will be removed from this category if they die or become infected. We use  $k$ to denote the rate at which uninfected cells become infected per virion. Secondly, these cells die naturally at a rate of  $\mu_T$. In the same way, $\mu_I$ is the rate at which infected cells are removed, the three options for this are natural cell death, immune response and \textit{lysis}, which is where fresh virions are ejected from the cell, breaking the membrane and killing the cell.
-Similarly, $\mu_V$ is the rate at whcic virions are removed from the host. Finally, $N$ gives the average number of new virions produced during the life of an infected cell. 
+The body of the person in question will produce fresh uninfected cells at a rate $\lambda$, however these cells will be removed from this category if they die or become infected. We use  $k$ to denote the rate at which uninfected cells become infected per virion. Secondly, these cells die naturally at a rate of  $\mu_T$. In the same way, $\mu_I$ is the rate at which infected cells are removed, the three options for this are natural cell death, immune response and \textit{lysis}, which is where fresh virions are ejected from the cell, breaking the membrane and killing the cell. Similarly, $\mu_V$ is the rate at whcic virions are removed from the host. Finally, $N$ gives the average number of new virions produced during the life of an infected cell. \\
 
-With all of this in mind, we can derive differential equations for $T$,  $I$, and  $V$. Starting with $T$, we have a constant  $\lambda$ feeding new cells, but then we are removing them at a rate $k$ per virion, and a proportion $\mu_T$ die of natural cell death. So we have:
+With all of this in mind, we can derive differential equations for $T$,  $I$, and  $V$. Starting with $T$, we have a constant  $\lambda$ feeding new cells, but then we are removing them at a rate $k$ per virion, and a proportion $\mu_T$ die of natural cell death. So we have: \\
 
 \[
     \frac{dT}{dt} = \lambda - \mu_TT - kTV    
@@ -77,7 +82,7 @@ The solution for this system is given as
         T(t) &= Ae^{-\mu_T t}+\frac{\lambda}{\mu_T} \\
 \end{equation}
 
-Since there are no infected cells, and no free virions, we just have the number of target cells increasing exponentially. Which makes sense because one's body creates more cells than it kills off- or at least, ideally that's what happens.
+Since there are no infected cells, and no free virions, we just have the number of target cells increasing exponentially. Which makes sense because one's body creates more cells than it kills off- or at least, ideally that's what happens.\\
 
 We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* \lambda$. This can be seen in figure 1. Clearly the values are restircted by my computing power, a human person (hopefully) has more than a total of 20000 cells.
 
@@ -89,10 +94,10 @@ We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* 
 
 \newpage
 
-So we see that the exponential shape as mentioned. This is clearly slightly simplified, to make a more realistic model, we wouldn't have $\frac{d \lambda}{dt} = 0$. As a person gets older, their body will produce less cells, which would cause the graph to curve off and eventually stop. 
+So we see that the exponential shape as mentioned. This is clearly slightly simplified, to make a more realistic model, we wouldn't have $\frac{d \lambda}{dt} = 0$. As a person gets older, their body will produce less cells, which would cause the graph to curve off and eventually stop. \\
 
 \subsection{Model for an Infected Person}
-We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the \textit{Python} programming language.\footnote{Python was selected due to it's efficiecny and helpful modules which makes solving these equations much easier.}
+We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the \textit{Python} programming language.\footnote{Python was selected due to it's efficiecny and helpful modules which makes solving these equations much easier.} \\
 
 We first look at positive N. When N is 1, each time an infected cell dies, only 1 new virion is released, analagous for N=10 and 50. The plotted graphs for these models can be seen below:
 
@@ -110,23 +115,21 @@ We first look at positive N. When N is 1, each time an infected cell dies, only 
     \end{minipage}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{../figures/N50.png}
+    \includegraphics[width=0.4\linewidth]{../figures/N50.png}
     \caption{ODE Model with N=50}%
 \end{figure}
 
-We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen.\footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution.
+We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen.\footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution. \\
 
 Further, note that here we have not considered medications and treatments, this will be discussed in a later chapter.
 
 \subsection{Advancing the ODE model - Parameter Estimation}
 
-Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. These individual viruses behave differently internally and externally, the way we model this difference is through th parameters given to the equations. This can be seen intuitively by comparing something like HIV and SARS-CoV2. HIV is an immunodeficiency virus, this means that it destroys the hosts immune system, so our parameters like $\lambda$ and  $\mu_I$ will actually decrease over time as the virus takes hold. Comparitively, SARS-based viruses are respiritory illnesses, so they dont taget the hosts defense systems in the same way, and so these parameters will remain roughly the same throughout.
+Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. These individual viruses behave differently internally and externally, the way we model this difference is through th parameters given to the equations. This can be seen intuitively by comparing something like HIV and SARS-CoV2. HIV is an immunodeficiency virus, this means that it destroys the hosts immune system, so our parameters like $\lambda$ and  $\mu_I$ will actually decrease over time as the virus takes hold. Comparitively, SARS-based viruses are respiritory illnesses, so they dont taget the hosts defense systems in the same way, and so these parameters will remain roughly the same throughout. \\
 
 These parameters are derived from analysing large amounts of data. But this can be improved as time goes on by using Bayesian Statistics. This is discussed extensively in a 1989 paper by Zeger et. al $\cite{zeger}$. This paper was focused on the AIDS epidemic in the US in the 1980s. By using log-linear models, they are able to estimate trends and numbers in the epidemic whilst correcting for new incoming data. It is this correcting aspect which is most relevant to our discussion. By correcting the models we can get a set of more accurate parameters which can then be used to fine tune our differential equations to model an epidemic. This is less to do with our models but it is useful to see how this works. Before this, we recall an incredibly important theorem:
-
-\newpage
 
 \begin{theorem}{Bayes:}
 Let $\{H_1,\ldots,H_k\}$ be a partition of an event-space $\mathbb{H}$ then for some other event E, \textit{Bayes' Theorem} gives us:
@@ -156,6 +159,83 @@ The $\sigma$ term is a  \textit{Stochastic Process}. We introduce the following 
 \begin{definition}
     A \textit{stochastic process} is a family of random variables $\sigma(t)$ parametrised by  $t \in T \subset \mathbb{R}$. When T is a continuous inteval in $\mathbb{R}$ (As in our case) then we call $\sigma$ a stochastic process in continuous time.
 \end{definition}
+
+In the above definition, we saw how $\sigma(t)$ is a family of random variables, but in our case, which ones?. To get the answer to this, we return to the processes involved in modelling molecular virology. 
+
+\subsection{Deriving the Stochastic Process for Molecular Virology}
+
+This subsection is considerably more statiscs-based than the rest of this chapter, although this is very necessary due to the structure of an SDE- you can't have one without the other. Before proceeding, we need the following definition.
+
+\begin{definition}
+    A random variable $Y$ has  \textit{Poisson Distribution} with parameter $\theta$ if it has PDF:
+     \[
+         p(Y=y | \theta) = \frac{\theta^y}{y!}exp(-\theta) 
+    .\] 
+\end{definition}
+
+Poisson random variables are very useful for the scenario we are describing- this is because by their nature they do a good job of modelling counts of independant events which occur within the same timeframe and within regions of the same dimension. With this in mind, we can now imporve the model we described in section 1.2.1.\\
+
+It is clear to see that a lot of the variables we looked at would follow a probability distribution based on other factors. For example, the number of free virions being released from a cell which is infected is N, follows a poisson distribution with parameter which I denote as $\theta_N$. \\ 
+
+In addition, we previously described k as a rate at which unifected cells become infected. This rate will likely not remains constant throughout an infection. In a case without medication, the ideal scenario is that $\lim_{t\to \infty}k = 0$ naturally. This means k follows normal distribution with parameters $mu_k, \simga^2_k$. At the start of the infection, k will be quite low as the virus begins to take hold, before peaking at the height of the infection and then dropping back down again when the host begins to fight back. Of course, with the introduction of a vaccine or treatment the curve of this distribution will be much flatter, and a lot more compact. \\ 
+
+Next up is the rate $\mu_i$, which also follows a normal distribution in the same way k does, but it will 'lag behind' k so to speak. It does this because it may take a while for the body to actually realise it is infected and launch an immune response. So it will take a time difference of $\delta t$ before  $\mu_I$ begins to go up. Ideally however, if the curves were fitted onto the same axis, they would cross at some point, at that point, it is at that point the host will start to feel better and the body begins to win the battle against the infection. \\
+
+Finally we have $\mu_T$ which doesn't follow a normal distribution as the others do, but it actually follows an exponential distribution.
+
+\begin{definition}
+    A radnom variable Y has \textit{Exponential Distribution} if the PDF is:
+
+    \[
+        P(Y=y | \theta) = \theta exp(-\theta y)
+    .\] 
+\end{definition}
+
+It's easy (but also a bit morbid) to see why $\mu_T$ follows this distribution. The below figure is an exaple plotted in R over a sequence of 1 to 500 and $\theta = 0.2$:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../figures/expExample.png}
+    \caption{Example of an exponential distribution with $\theta=0.2$}
+\end{figure}
+
+So naturally the actual values on this are exemplified but $\mu_T$ follows the same shape- by the time someone reaches the age of 80 they are producing cells at a much slower rate than someone at the age of 8. One may raise a point along the lines of 'Well, you are modelling a lifetime-scaled value in the case of micro system, surely $\mu_T$ won't have actually changed that much', and this is a valid point, but because this distribution is continuous, the value of $\mu_T$ will have decreased by the time someone is cured of an illness, so it is still important- in the persuit of accuracy- to model this rate with a distribution, as we have done in the others. \\
+
+So now we actually have all the ingredients for our model. All the rates at how the infection evolves can be encompassed in the  $\sigma$ term of an SDE, and we have a slightly more accurate model for virology. \\
+
+\section{Stochastic vs Differential, Which is better? What's the point?}
+
+One may say, 'well if the stochastic model is more accurate why bother with the deterministic one?' and this is another reasonable point, but by reffering to the definition of an SDE we can answer this question very inuitively. An SDE is simply an extension of an ODE, so it means if the $\sigma$ term relating all the distributions of the parameters is small, (which we refer to as there not being much noise) there is no point going through the extra effort to calculate it. This is due to things like computational complexity and the need for the extra 'meta' parameters such as  $\theta_N$. \\ 
+
+Infact, after considerable numerical simmulation, it was found in a 2017 paper by Mahrouf et. al, $\cite{mah}$ that in the case where there is not much 'noise', it is just as well to use the deterministic model as outlined in the first section. I do not have the technical expertise to reproduce these graphs but I do reccomend them to the reader, in particular figure 3, as it gives a good demonstartion of this result. \\
+
+On the contrary, in the event that there is a considerable amount of noise, which could be caused by a virus being particularly nasty, or a host being partularly ill, the deterministic equation is simply not enough to model the scenario. \\
+
+It goes without saying modelling in epidemiology has been very relevant, and in the fight against pandemics the macro-scaling models of infection are being used to fight infections, so where does the work we have outlined here come into the fight? The main way this will be used is in the development and assessment of treatments/vaccines, knowing how different parameters such as age affect how a hosts' body will respond is very beneficial in this fight, and so the work being done in this area is abundantely important, not just with the current pandemic, but fighting viruses like HIV and Dengue, as we mentioned earlier. \\
+
+A lot of work in this field is going to finding out when direct solutions exist to the models we have described, and further, what conditions there has to be on the parameters for solutions to exist. This is particularly crucial in helping with the work described above, because it means we can cater treatments to individual people's needs based on how far along the infection cycle. \\
+
+\section{Real World Application: Deterministic Model for Hepitis B}
+Throught this chapter, I have name-dropped different virusses as examples, but we have just talked about 'a virus', so to round this chapter up I want to look at a paper from the Journal of Mathematical Biology, in which they discuss Hepatitis B, and its dynamics. \footnote{Hepatitis B is a nasty liver infection which in the worst cases causes liver faliure and cancer.} 
+
+Hews et al $\cite{hews}$ begin by defining the original model used for modelling Hepitis B infection, which is in the form of that in (1.1):
+
+\begin{equation}
+    \begin{cases}
+        \frac{dx}{dt} = r - dx(t) = \beta v(t)x(t) \\
+        \frac{dy}{dt} = \beta v(t)x(t) - ay(t) \\
+        \frac{dv}{dt} = \gamma y(t) - \mu v(t)
+    \end{cases}
+\end{equation}
+
+Here, x is the healthy cells, more specifically hepatocytes, which are cells making up liver tissue. y are cells infected with Hepitits B, and again v is the number of free virions. r gives the rate at which new hepatocytes are produced, and removed at rate d. $\alpha, \beta$ give the rate at which infected cells die, and the  \textit{mass-action constant} respecitvely. $\mu$ is N in our general model, and  $\gamma$ is the rate new virions are made. So it's clear how the model we outlined has been put into practice. \\
+
+In figure 1 of the paper, they show a case of chronic Hepitis B, which gives a graph looking very similar to the ones in Figures 2,3,4 of this chapter. Some of the other diagrams given in this paper we don't have analogies for but they tell us a lot about infection dynamics. \\
+
+To advance their, model, they introduce a new parameter- $R*$ the  \textit{The Cellular Vitality Index}, which is a way of describing the behaviour of healthy cells more succinctly. They conclude that the difference between $R_0$ and  $R*$ will tell us a lot about how an infection will play out. Recall  $R_0$ is the basic reproduction number of an infection. As a perfect example of what I mentioned earlier about these models being used to improve treatments- the authors of this paper suggest that novel treatments should look to improve and maintain the value of  $R*$ in a host, in order to allow the liver tissue to regenerate and fight an infection. \\
+
+I believe this model goes a long way in showing the power of mathematical biology and it's applications to medicine. We have seen how we can use the models at our disposal to reccomend treatments, just by evaluating the stability of a differential equation. The more accurate we make these models, the more people we can help.
+
 
 \bibliography{refs}{}
 \bibliographystyle{plain}
