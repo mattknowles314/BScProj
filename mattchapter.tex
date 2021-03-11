@@ -4,19 +4,19 @@
 
 \subsection{Biological Background of Molecular Virology}
 
-Before diving into the maths of virology, we will briefly look at some of the biological processes involved, as a way of giving context to the maths that is employed later. Viral Pathogenesis is a very complex process with lots of varying factors. It can be somewhat boiled down to a balancing act between the host and the virus. The goal of any virus that wants to survive is to hijack the cells in a host and replicate as much as possible. This is done by a process known as \textit{replication}.\footnote{Creative, I know} $\cite{cann}$ \\
+Before diving into the maths of pathology, we will briefly look at some of the biological processes involved, as a way of giving context to the maths that we explore in this chapter. Viral Pathogenesis is a very complex process with lots of varying factors. It can be somewhat boiled down to a balancing act between the host and the virus. The goal of any virus that wants to survive is to hijack the cells in a host and replicate as much as possible. This is done by a process known as \textit{replication}. $\cite{cann}$. It can take a while for this balancing act to reach equilibrium, and often the case is that viruses naturally become less deadly the longer they are around, in order to preserve a population of potential hosts. Those that kill off their hosts too quickly, inadvertantly kill off theirselves.\\
 
 There are three stages involved in replication, \textbf{Initiation of Infection}, \textbf{Replication and Expression of the viral genome} and  \textbf{Release of mature virions}. The modelling we will undertake primarily focuses on steps 1 and 3. \\
 
-Viruses are unique in they bind to specific genes in a host, for example, we will discuss Hepititis B at the end of this chapter, which only binds to liver cells, whereas a virus like SARS or MERS are respiritory illness, which bind to receptors in a hosts lungs. This fact is useful when it comes to actually computing the models we describe here, because it means we can reduce the size of the parameters required- a virus that infects the large intestine will require bigger parameters than one that infects the kidneys. \\
+Viruses are unique in that they bind to specific genes in a host, for example, we will discuss Hepititis B at the end of this chapter, which only binds to liver cells, whereas a virus like SARS or MERS are respiritory illness and so bind to receptors in a host's lungs and trachea. This fact is useful when it comes to actually computing the models we describe here, because it means we can reduce the size of the parameters required- a virus that infects the large intestine will require bigger parameters than one that infects the kidneys. \\
 
-Virions- the individual virus particles-, when they reach their target tissue, bind to certain points on the genome of the cells in that tissue. Virions may not always get this far if the target cells are aware of the incoming cell as a virus and can prevent binding. This is what happens if someone has immunity by either already having had the virus or being vaccinated. Once bound to the genome, they can activate certain genes in the genome. This is the 'hijacking' part, because it will cause the infected cells to produce more infected cells instead of the healthy ones it should be producing. A lot of statisitcal pattern recognition is going on to help develop treatments for viruses and cancers by identifying genes that viruses target, allowing treatments to fight an infection from a genomic level- but we won't discuss that in this chapter. \\
+Virions are the individual particles that bind to certain points on the genome of the cells in the target tissue. Virions may not always get this far if the target cells are aware of the incoming cell as a virus and can prevent binding. This is what happens if someone has immunity by either already having had the virus or being vaccinated. Once bound to the genome they can activate certain genes. This is the 'hijacking' part of the process, as it will cause the infected cells to produce more home-grown infected cells instead of the healthy ones it should be producing. A lot of statisitcal pattern recognition is going on to help develop treatments for viruses and cancers by identifying genes that viruses target, allowing treatments to fight an infection from a genomic level- but we won't discuss that in this chapter. \footnote{See the work of Dr. Andrew Holding, Department of Biology, University of York - \url{www.andrewholding.com}} \\
 
-What we will now go onto discuss is how an infection unfolds, using 2 different types of models. The work being described below is an incredibly exciting area of biological maths and I believe has the potential to make a huge difference to medicine in the future. \\
+Now that the biological context for this work has been established, we can begin to look at the mathematical models being employed to describe these systems.
 
 \subsection{Overview Differential Equations in Molecular Virology}
 
-Differential Equations are very relevant in applied mathematics. Virology is no exception. In this chapter we will be focusing on a micro scale, looking in depth at the equations used to model in-host viral dynamics. There are two main types of differential equations we will look at: ordinary (ODE) and stochastic (SDE). 
+Differential Equations are very relevant in applied mathematics, Virology is no exception. There are two main types of differential equations we will look at: ordinary (ODE) and stochastic (SDE). 
 We assume the reader is familiar with ODEs, but SDE's are slightly more specialised. $\cite{sdeProc}$.
 
 \begin{definition}
@@ -26,12 +26,14 @@ We assume the reader is familiar with ODEs, but SDE's are slightly more speciali
     \]  
 \end{definition}
 
-We see two terms here that need further explanation.
+To dissect this definition a bit more, it can be broken into the two constituents:
 
 \begin{itemize}
     \item $b(X_t,t)$ is the \textbf{drift coefficient} of the equation. It describes the deterministic part of the equation. \\
-    \item $\sigma (X_t,t)dW_t$ is the \textbf{diffusion coefficient}. It describes random motion, which is what seperates SDEs from ODEs. If this term was not here, we would simply have an ODE.
+    \item $\sigma (X_t,t)dW_t$ is the \textbf{diffusion coefficient}. It describes random motion by being a collection of random variables, which is what seperates SDEs from ODEs. If this term was not here, we would simply have an ODE.
 \end{itemize}
+
+We will return to stochastic processes later, but first we take a look at a deterministic model.
 
 \section{An ODE model for in-host viral dynamics}
 
@@ -84,7 +86,7 @@ The solution for this system is given as
 
 Since there are no infected cells, and no free virions, we just have the number of target cells increasing exponentially. Which makes sense because one's body creates more cells than it kills off- or at least, ideally that's what happens.\\
 
-We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* \lambda$. This can be seen in figure 1. Clearly the values are restircted by my computing power, a human person (hopefully) has more than a total of 20000 cells.
+We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* \lambda$. This can be seen in figure 1. Clearly the values are restircted by my computing power, but the shape of this curve will be the same on an axis ranging across more accurate values.
 
 \begin{figure}[t]
     \centering
@@ -97,7 +99,7 @@ We can plot a sketch of what this looks like with values $\mu_T = \frac{1}{10}* 
 So we see that the exponential shape as mentioned. This is clearly slightly simplified, to make a more realistic model, we wouldn't have $\frac{d \lambda}{dt} = 0$. As a person gets older, their body will produce less cells, which would cause the graph to curve off and eventually stop. \\
 
 \subsection{Model for an Infected Person}
-We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the \textit{Python} programming language.\footnote{Python was selected due to it's efficiecny and helpful modules which makes solving these equations much easier.} \\
+We now turn to someone who has caught a virus. There are now $V$ free virions present. The important factor is N. To see just how much this factor varies the results, a plot of this system was created in the Python programming language.\footnote{Python was selected due to it's efficiancy and helpful modules which makes solving these equations much easier.} \\
 
 We first look at positive N. When N is 1, each time an infected cell dies, only 1 new virion is released, analagous for N=10 and 50. The plotted graphs for these models can be seen below:
 
@@ -121,7 +123,7 @@ We first look at positive N. When N is 1, each time an infected cell dies, only 
     \caption{ODE Model with N=50}%
 \end{figure}
 
-We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen.\footnote{This is analagous to the fable of the boiling frog.} In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is longer, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, the virus aims to find a balancing act between these performances. If a virus kills off its host too quickly, it will not reproduce and spread to others, which goes agains the aim of evolution. \\
+We can see that these equations result in a oscilating graph in each case. These coupled differential equations show how the amount of infected vs target cells changes over a given time period. When N is lower, the initial oscillation is greater. From a biological standpoint, this makes perfect sense as the host's body won't be as agressive in attacking the pathogen. In the scenario where N is lower, we can see from the above models that the infection is sustained for longer, whereas when N is larger, the host will be more aggressive in fighting the pathogen, and so the infection won't last as long. Through genetic variations, this is where the virus aims to find a balancing act in performance. \\
 
 Further, note that here we have not considered medications and treatments, this will be discussed in a later chapter.
 
@@ -129,10 +131,10 @@ Further, note that here we have not considered medications and treatments, this 
 
 Differential equations are a great tool for this kind of scientific enquiry, and the model we have seen above has demonstrated it's power in acurately describing reality. But how can we improve it? Firstly, it depends on the virus being modelled. There are many viral infections, HIV, Dengue, SARS-CoV2 to name a few. These individual viruses behave differently internally and externally, the way we model this difference is through th parameters given to the equations. This can be seen intuitively by comparing something like HIV and SARS-CoV2. HIV is an immunodeficiency virus, this means that it destroys the hosts immune system, so our parameters like $\lambda$ and  $\mu_I$ will actually decrease over time as the virus takes hold. Comparitively, SARS-based viruses are respiritory illnesses, so they dont taget the hosts defense systems in the same way, and so these parameters will remain roughly the same throughout. \\
 
-These parameters are derived from analysing large amounts of data. But this can be improved as time goes on by using Bayesian Statistics. This is discussed extensively in a 1989 paper by Zeger et. al $\cite{zeger}$. This paper was focused on the AIDS epidemic in the US in the 1980s. By using log-linear models, they are able to estimate trends and numbers in the epidemic whilst correcting for new incoming data. It is this correcting aspect which is most relevant to our discussion. By correcting the models we can get a set of more accurate parameters which can then be used to fine tune our differential equations to model an epidemic. This is less to do with our models but it is useful to see how this works. Before this, we recall an incredibly important theorem:
+These parameters are derived from analysing large amounts of data. But this can be improved as time goes on by using Bayesian Statistics. This is discussed extensively in a 1989 paper by Zeger et. al $\cite{zeger}$, in which they focus on the AIDS epidemic in the USA in the 1980s. By using log-linear models, they are able to estimate trends and numbers in the epidemic whilst correcting for new incoming data. It is this correcting aspect which is most relevant to our discussion. By correcting the models we can get a set of more accurate parameters which can then be used to fine tune our differential equations. This is less to do with the models themselves but it is useful to see how this works. Before doing this, we recall an incredibly powerful theorem:
 
 \begin{theorem}{Bayes:}
-Let $\{H_1,\ldots,H_k\}$ be a partition of an event-space $\mathbb{H}$ then for some other event E, \textit{Bayes' Theorem} gives us:
+Let $\{H_1,\ldots,H_k\}$ be a partition of an event-space $\mathbb{H}$, then for some other event E, \textit{Bayes' Theorem} gives us:
 
 \begin{equation}        
     Pr(H_j | E) = \frac{Pr(E|H_j)Pr(H_j)}{\sum_k Pr(E|H_k)Pr(H_k)}
@@ -147,17 +149,17 @@ Let $\{H_1,\ldots,H_k\}$ be a partition of an event-space $\mathbb{H}$ then for 
         p(\mu_I | y) \propto p(y|\mu_I)p(\mu_I)
     .\] 
 
-Since infection data for epidemics follows a normal distribution, the probability density functions can be subsituted in and the necessary calculations made from this, although this is beyond the scope of this chapter.
+Since infection data for epidemics follows a normal distribution, the probability density functions can be substituted in and the necessary calculations made from this, although this is beyond the scope of this chapter.
 \end{example}
 
 \section{The Stochastic Differential Equation Model}
-We met the definition of a Stochastic Differetnial Equation (SDE) in the overview, definition 1. We will be focussing now on the $\sigma(X_t,t)dW_t$ term. Firstly, we ask ``why use SDEs when we have seen that ODES give a good model?". Intuitively, there is an element of randomness to pathology, just because you have a disease, it doesn't mean you have a 100\% chance of passing it on if you come into contact with an infected person. Analously, a pathogen might not necessarily make it all the way through the pathogenesis process of infecting a cell. So introducing the randomness term can refine our models nicely.
+We met the definition of a Stochastic Differetnial Equation (SDE) in the overview, definition 1. We will be focussing now on the $\sigma(X_t,t)dW_t$ term. Firstly, we ask ``why use SDEs when we have seen that ODES give a good model?". Intuitively, there is an element of randomness to pathology, just because you have a disease, it doesn't mean you have a 100\% chance of passing it on if you come into contact with an infected person. Analagously, a pathogen might not necessarily make it all the way through the pathogenesis process of infecting a cell. So introducing the randomness term can refine our models nicely.
 
 \subsection{Outline of a Stochastic Process}
-The $\sigma$ term is a  \textit{Stochastic Process}. We introduce the following definition for a stochastic process as given in $\cite{brze}$:
+The $\sigma$ term is known as a  \textit{Stochastic Process}. We introduce the following definition for a stochastic process as given in $\cite{brze}$:
 
 \begin{definition}
-    A \textit{stochastic process} is a family of random variables $\sigma(t)$ parametrised by  $t \in T \subset \mathbb{R}$. When T is a continuous inteval in $\mathbb{R}$ (As in our case) then we call $\sigma$ a stochastic process in continuous time.
+    A \textit{stochastic process} is a family of random variables $\sigma(t)$ parametrised by  $t \in T \subset \mathbb{R}$. When T is a continuous inteval in $\mathbb{R}$ then we call $\sigma$ a stochastic process in continuous time.
 \end{definition}
 
 In the above definition, we saw how $\sigma(t)$ is a family of random variables, but in our case, which ones?. To get the answer to this, we return to the processes involved in modelling molecular virology. 
